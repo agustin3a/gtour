@@ -1,0 +1,161 @@
+<% content_for :head do %>
+  <%= stylesheet_link_tag "maps", 'data-turbolinks-track' => true %>
+  <title>Map | GTour</title>
+<% end %>
+
+<div class="row row-offcanvas row-offcanvas-left" >              
+  <!-- sidebar -->
+  <div class="column col-sm-2 col-xs-1 sidebar-offcanvas" id="sidebar">
+    <ul class="nav">
+      <li><button id = "slide" data-toggle="offcanvas" class="visible-xs text-center btn"><i class="glyphicon glyphicon-chevron-right"></i></button></li>
+    </ul>
+    <ul class="nav hidden-xs sidemenu" id="lg-menu">
+        <li class="sidebar-title"><h4>Navigation</h4></li>
+        <div class="custom_line"> <hr class="custom_line"/> </div>
+        <li><a  data-filter='1' ><i class="glyphicon"><img src="/assets/icons/park-24.svg"/></i> Parks</a></li>
+        <li><a  data-filter='2' ><i class="glyphicon"><img src="/assets/icons/place-of-worship-24.svg"/></i> Churchs</a></li>
+        <li><a  data-filter='3' ><i class="glyphicon"><img src="/assets/icons/museum-24.svg"/></i> Museums</a></li>
+        <li><a  data-filter='4'><i class="glyphicon"><img src="/assets/icons/building-24.svg"/></i> Hotels</a></li>
+        <li><a  data-filter='5'><i class="glyphicon"><img src="/assets/icons/restaurant-24.svg"/></i> Restaurants</a></li>
+        <li><a  data-filter='6'><i class="glyphicon"><img src="/assets/icons/shop-24.svg"/></i> Shops</a></li>
+    </ul>
+      <!-- tiny only nav-->
+    <ul class="nav visible-xs sidemenu" id="xs-menu">
+        <li><a  data-filter='1' ><i class="glyphicon"><img src="/assets/icons/park-24.svg"/></i></a></li>
+        <li><a  data-filter='2' ><i class="glyphicon"><img src="/assets/icons/place-of-worship-24.svg"/></i></a></li>
+        <li><a  data-filter='3' ><i class="glyphicon"><img src="/assets/icons/museum-24.svg"/></i></a></li>
+        <li><a  data-filter='4'><i class="glyphicon"><img src="/assets/icons/building-24.svg"/></i></a></li>
+        <li><a  data-filter='5'><i class="glyphicon"><img src="/assets/icons/restaurant-24.svg"/></i></a></li>
+        <li><a  data-filter='6'><i class="glyphicon"><img src="/assets/icons/shop-24.svg"/></i></a></li>
+      </ul>
+  </div>
+  <!-- /sidebar -->        
+  <!-- main right col -->
+  <div class="column col-sm-10 col-xs-11" id="main">
+                
+
+  
+    <div id='map'></div>
+  </div>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-vertical-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h3 class="modal-title text-center" id="myModalLabel">Modal title</h3>
+      </div>
+      <div class="modal-body">
+        <h4 class="modal-address">Address</h4>
+        <h4 class="modal-phone">Phone</h4>
+        <h4 class="modal-web">Website</h4>
+
+        <i class="glyphicon"><img src="/assets/glyphicons_social/png/glyphicons_social_30_facebook.png"/></i>
+        <i class="glyphicon"><img src="/assets/glyphicons_social/png/glyphicons_social_31_twitter.png"/></i>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <script>
+L.mapbox.accessToken = 'pk.eyJ1IjoiYWd1c3RpbjNhIiwiYSI6Ik5EU3FnSW8ifQ.c97mqtOcNcKft2TwV-tnEQ';
+var map = L.mapbox.map('map', 'agustin3a.88bf40a9')
+    .setView([14.56, -90.733], 15);
+
+    var layers = {
+      Streets: L.mapbox.tileLayer('examples.map-i87786ca'),
+      Outdoors: L.mapbox.tileLayer('examples.ik7djhcc'),
+      Satellite: L.mapbox.tileLayer('examples.map-igb471ik')
+  };
+
+layers.Streets.addTo(map);
+L.control.layers(layers).addTo(map);
+var markers;
+
+  $.ajax({
+  dataType: 'text',
+  url: 'map.json',
+  success: function(data) {
+    var geojson;
+    geojson = $.parseJSON(data);
+    markers =  map.featureLayer.setGeoJSON(geojson);
+    return markers;
+  }
+});
+
+  /*L.mapbox.featureLayer()
+    .setGeoJSON(geojson)
+    .addTo(map); */
+
+  map.featureLayer.on('layeradd', function(e) {
+  var marker, popupContent, properties;
+  marker = e.layer;
+  properties = marker.feature.properties;
+  popupContent = '<div class="popup"><a class="linkmodal" data-name="' + properties.name + '" data-toggle="modal" data-target="#myModal" data-address="'+ properties.address +'" data-phone="'+ properties.phone + '" data-web="'+ properties.website +'"> ' + '<h3>' + properties.name + '</h3>' + '<p>' + properties.address + '</p>' + '</a>' + '</div>';
+  return marker.bindPopup(popupContent, {
+    closeButton: false,
+    minWidth: 320
+  });
+});
+
+
+
+$('#map').on('click', '.linkmodal', function() {
+    var title = $(this).data('name');
+    var address = $(this).data('address');
+    var phone = $(this).data('phone');
+    var website = $(this).data('web');
+    web = "http://" + website;
+    $('.modal-title').html(title);
+    $('.modal-address').html(address);
+    $('.modal-phone').html(phone);
+    if(!(website == "")) {
+    $('.modal-web').html('<a href="' + web + '"><span class="glyphicon glyphicon-link"></span>' + website + '</a>');
+  } else {
+    $('.modal-web').html(website);
+  }
+    return true;
+  
+});
+
+
+
+var list = [];
+
+$('.sidemenu a').on('click', function() {
+    // For each filter link, get the 'data-filter' attribute value.
+    var filter = $(this).data('filter');
+    console.log(filter);
+    if ($(this).hasClass('active')) {
+      $(this).removeClass('active');
+      var index = list.indexOf('filter');
+      list.splice(index, 1);
+    } else {
+      $(this).addClass('active');
+      list.push(filter);
+    }
+    markers.setFilter(function(f) {
+        var index;
+        for (index = 0; index < list.length; index++) {
+          if (f.properties['type'] == list[index]) {
+            return true;
+          }
+        }
+      return false;
+    });
+    return false;
+});
+
+
+
+</script>
+
+
+
+
+

@@ -1,0 +1,138 @@
+<% content_for :head do %>
+  <%= stylesheet_link_tag "pages", media: 'all', 'data-turbolinks-track' => true  %>
+  <%= javascript_include_tag 'home', 'data-turbolinks-track' => true %>
+  <title>GTour</title>
+<% end %>
+
+
+<div id="home" class="home">
+  <div class="text-vcenter">
+    <h1>Explore Antigua</h1>
+    <h3>GTour</h3>
+    
+  </div>
+</div>
+
+<div id="about" class="pad-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6">
+        <img src="/assets/maps.png" alt="" class="img-rounded card" />
+      </div>
+      <div class="col-sm-6 text-center">
+        <div class="hidden-xs"><br><br><br><br></div>
+        <h1>Discover new Places</h1>
+        <h2 >Find any place you want, usign our maps is simple and easy</h2>
+        <br>
+        <button class="btn btn-default btn-lg">
+          <%= link_to map_path do %>
+           Discover Now
+          <% end %>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="information" class="pad-section">
+  <div class="container text-vcenter">
+    <div class="row">
+    </div>
+  </div>
+</div>
+
+<div id="services" class="pad-section">
+  <div class="container">
+    <h2 class="text-center">Our Services</h2> <hr />
+    <div class="row text-center">
+    <div class="col-sm-4 col-xs-12">
+        <i class="glyphicon glyphicon-map-marker"> </i>
+        <h4>Find on Map</h4>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in sem cras amet. Donec in sem cras amet.</p>
+      </div>
+      <div class="col-sm-4 col-xs-12">
+        <i class="glyphicon glyphicon-book"> </i>
+        <h4>Service 1</h4>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in sem cras amet. Donec in sem cras amet.</p>
+      </div>
+      <div class="col-sm-4 col-xs-12">
+        <i class="glyphicon glyphicon-share"> </i>
+        <h4>Service 3</h4>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in sem cras amet. Donec in sem cras amet.</p>
+      </div>
+      <div class="hidden-xs"><br><br><br></div>
+        <button class="btn btn-default btn-lg">
+          <%= link_to map_path do %>
+           Discover Now
+          <% end %>
+        </button>
+    </div>
+    
+
+  </div>
+</div>
+
+<div id="information2" class="pad-section">
+  <div class="container text-vcenter">
+    <div class="row">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<div id="phone" class="pad-section">
+  <div class="container">
+    <div class="row">
+    <div class="col-sm-4 col-md-offset-2 text-center">
+        <br><br><br><br>
+        <h1>Discover new Places</h1>
+        <h2 >Find any place you want, usign our maps is simple and easy</h2>
+        <br>
+        
+      </div>
+      <div class="col-sm-4 text-center hidden-xs">
+        <img src="/assets/phone.png" class="iphone" />         
+      </div>
+  </div>
+  </div>
+</div>
+<br><br><br> 
+ 
+
+<div id="label" class="pad-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 text-center">
+        <h3>Parallax scrolling effect is in action</h3>
+        <h4>The next is the address on Google maps</h4>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+<!-- /fourth section -->
+<!-- fifth section -->
+
+<!-- /fifth section -->
+
+
+<!-- /google map -->
+
+<!-- footer -->
+<footer>
+  <hr />
+  <div class="container text-right">
+    <i class="glyphicon"><img src="/assets/glyphicons_social/png/glyphicons_social_30_facebook.png"/></i>
+        <i class="glyphicon"><img src="/assets/glyphicons_social/png/glyphicons_social_31_twitter.png"/></i>
+    <p> Copyright &copy; GTour 2014</p>
+  </div>
+</footer>
