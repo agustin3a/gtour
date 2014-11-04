@@ -52,6 +52,7 @@ index  :default => true do
   end
 
   filter :name
+  filter :address
   filter :type, :as => :select, :collection => [["Park", 1], ["Church", 2], ["Museum", 3], ["Hotel", 4], ["Restaurant" , 5], ["Shop" , 6]]
 
 
