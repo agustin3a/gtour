@@ -88,10 +88,6 @@ var markers;
   }
 });
 
-  /*L.mapbox.featureLayer()
-    .setGeoJSON(geojson)
-    .addTo(map); */
-
   map.featureLayer.on('layeradd', function(e) {
   var marker, popupContent, properties;
   marker = e.layer;

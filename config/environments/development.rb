@@ -36,7 +36,7 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
     # General Settings
-  config.app_domain = 'somedomain.com'
+  config.app_domain = 'http://localhost:3000'
 
   # Email
   config.action_mailer.delivery_method = :smtp
@@ -49,6 +49,6 @@ Rails.application.configure do
     user_name: 'someuser',
     password: 'somepass',
     authentication: :plain,
-    domain: 'somedomain.com'
+    domain: 'http://localhost:3000'
   }
 end
