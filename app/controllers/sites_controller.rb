@@ -16,6 +16,7 @@ class SitesController < InheritedResources::Base
     	@parks = sidebar_places(1)
     	@churchs = sidebar_places(2)
     	@museums = sidebar_places(3)
+    	@sites = Site.all
     end
 
     private

@@ -59,6 +59,15 @@
 
   		 <%= image_tag @site.image.url(:medium), class: "img-rounded" %>
   		 
+
+</div>
+<div id='mapx' class="pad-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-10 text-center" >
+      </div>
+    </div>
+  </div>
 </div>
 
 <div id="disqus_thread"></div>
@@ -79,7 +88,7 @@
     })();
 
 L.mapbox.accessToken = 'pk.eyJ1IjoiYWd1c3RpbjNhIiwiYSI6Ik5EU3FnSW8ifQ.c97mqtOcNcKft2TwV-tnEQ';
-var map = L.mapbox.map('map', 'agustin3a.88bf40a9')
+var map = L.mapbox.map('mapx', 'agustin3a.88bf40a9')
     .setView([14.56, -90.733], 15);
 
     var layers = {
