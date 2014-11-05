@@ -3,7 +3,6 @@ class MapsController < ApplicationController
   	@places = Place.all
 		@geojson = Array.new
 		@places.each do |place|
-			
 			if place.type == 1 
 				color = '#E74C3C'
 				symbol = 'park'
@@ -23,6 +22,12 @@ class MapsController < ApplicationController
 				color = '#f1c40f'
 				symbol = 'shop'
 			end
+		s = Site.where(place_id: place.id)
+		if !(place.site.nil?)
+			site = "/sites/" + place.site.id.to_s
+		else
+			site = ""
+		end
 		ptype = place.type.to_s
 		  @geojson << {
 		    type: 'Feature',
@@ -37,6 +42,7 @@ class MapsController < ApplicationController
 		      website: place.website,
 		      type: ptype,
 		      id: place.id,
+		      site: site,
 	      	:'marker-color' => color,
 	      	:'marker-symbol' => symbol,
 	      	:'marker-size' => 'medium'		      

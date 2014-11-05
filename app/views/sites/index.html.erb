@@ -1,27 +1,58 @@
-<h1>Listing sites</h1>
+<% content_for :head do %>
+  <%= stylesheet_link_tag "maps", 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag "contact", 'data-turbolinks-track' => true %>
+  <title>Sites | GTour</title>
+<% end %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Body</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @sites.each do |site| %>
-      <tr>
-        <td><%= site.title %></td>
-        <td><%= site.body %></td>
-        <td><%= link_to 'Show', site %></td>
-        <td><%= link_to 'Edit', edit_site_path(site) %></td>
-        <td><%= link_to 'Destroy', site, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="row row-offcanvas row-offcanvas-left" > 
+<div class="column col-sm-2 col-xs-1 sidebar-offcanvas" id="sidebar">
+    <ul class="nav">
+      <li><button id = "slide" data-toggle="offcanvas" class="visible-xs text-center btn"><i class="glyphicon glyphicon-chevron-right"></i></button></li>
+    </ul>
+    <ul class="nav hidden-xs sidemenu" id="lg-menu">
+        <li class="sidebar-title"><h4>Sites of Interest</h4></li>
+        <li><a  data-filter='1' ><i class="glyphicon"><img src="/assets/icons/park-24.svg"/></i> Parks</a></li>
+        <% @parks.each  do |park| %>
+          <li><%= link_to park ,class: "sub"  do %>
+              <%= park.title %>
+            <% end %>
+          </li>
+        <% end %>
+        <li><a  data-filter='2' ><i class="glyphicon"><img src="/assets/icons/place-of-worship-24.svg"/></i> Churchs</a></li>
+        <% @churchs.each  do |church| %>
+          <li><%= link_to church, class: "sub"  do %>
+              <%= church.title %>
+            <% end %>
+          </li>
+        <% end %>
+        <li><a  data-filter='3' ><i class="glyphicon"><img src="/assets/icons/museum-24.svg"/></i> Museums</a></li>
+        <% @museums.each  do |museum| %>
+          <li><%= link_to museum, class: "sub" do %>
+              <%= musemum.title %>
+            <% end %>
+          </li>
+        <% end %>
+        
+    </ul>
+      <!-- tiny only nav-->
+    <ul class="nav visible-xs sidemenu" id="xs-menu">
+        <li><a  data-filter='1' ><i class="glyphicon"><img src="/assets/icons/park-24.svg"/></i></a></li>
+        <li><a  data-filter='2' ><i class="glyphicon"><img src="/assets/icons/place-of-worship-24.svg"/></i></a></li>
+        <li><a  data-filter='3' ><i class="glyphicon"><img src="/assets/icons/museum-24.svg"/></i></a></li>
+        <li><a  data-filter='4'><i class="glyphicon"><img src="/assets/icons/building-24.svg"/></i></a></li>
+        <li><a  data-filter='5'><i class="glyphicon"><img src="/assets/icons/restaurant-24.svg"/></i></a></li>
+        <li><a  data-filter='6'><i class="glyphicon"><img src="/assets/icons/shop-24.svg"/></i></a></li>
+      </ul>
+  </div>
 
-<br>
+    <div class="column col-sm-10 col-xs-11" ß>
 
-<%= link_to 'New Site', new_site_path %>
+  <div class="jumbotron">
+
+   
+       
+</div>
+
+</div>
+</div>

@@ -23,7 +23,11 @@
           <span class="glyphicon glyphicon-map-marker"></span> Map</a>
           <% end %>
         </li>
-        <li><a href="#services"><span class="glyphicon glyphicon-globe"></span> Explore</a></li>
+        <li>
+          <%= link_to sites_path do %>
+          <span class="glyphicon glyphicon-globe"></span> Explore</a>
+          <% end %>
+        </li>
         <li>
           <%= link_to pages_contact_path do %>
           <span class="glyphicon glyphicon-briefcase"></span> Contact</a>
