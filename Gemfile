@@ -27,6 +27,7 @@ gem 'omniauth-linkedin'
 gem 'bootstrap-sass'
 gem 'geokit-rails'
 gem 'activeadmin', github: 'activeadmin'
+gem 'paperclip', github: 'thoughtbot/paperclip' 
 
 group :development, :test do
      gem 'sqlite3'

@@ -2,7 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-/* custom template */
 html, body {
    height: 100%;
    
@@ -193,8 +192,6 @@ hr {
 
 
 
-/* bootstrap overrides */
-
 h1,h2,h3,h4 {
    font-weight:800;
 }
@@ -207,7 +204,7 @@ h1,h2,h3,h4 {
 }
 
 
-/* adjust the contents on smaller devices */
+
 @media (max-width: 768px) {
 
   .column .padding {
@@ -217,10 +214,7 @@ h1,h2,h3,h4 {
 }
 
 
-/*
- * off canvas sidebar
- * --------------------------------------------------
- */
+
 @media screen and (max-width: 768px) {
   .row-offcanvas {
     position: relative;
