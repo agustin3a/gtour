@@ -18,6 +18,7 @@
         <li><a  data-filter='4'><i class="glyphicon"><img src="/assets/icons/building-24.svg"/></i> Hotels</a></li>
         <li><a  data-filter='5'><i class="glyphicon"><img src="/assets/icons/restaurant-24.svg"/></i> Restaurants</a></li>
         <li><a  data-filter='6'><i class="glyphicon"><img src="/assets/icons/shop-24.svg"/></i> Shops</a></li>
+        
     </ul>
       <!-- tiny only nav-->
     <ul class="nav visible-xs sidemenu" id="xs-menu">
@@ -43,20 +44,24 @@
   <div class="modal-dialog modal-vertical-centered">
     <div class="modal-content">
       <div class="modal-header">
+  
+
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <h3 class="modal-title text-center" id="myModalLabel">Modal title</h3>
       </div>
       <div class="modal-body">
+        <div id='map2'></div>
         <h4 class="modal-address">Address</h4>
         <h4 class="modal-phone">Phone</h4>
         <h4 class="modal-web">Website</h4>
-
         <h5> Share <h5>
         
           <a class="twitter-share-button"
   href="https://twitter.com/share">Tweet</a>
 
       </div>
+      <h4>Comments</h4>
+       
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
       </div>
@@ -65,6 +70,8 @@
 </div>
 
   <script>
+
+
 L.mapbox.accessToken = 'pk.eyJ1IjoiYWd1c3RpbjNhIiwiYSI6Ik5EU3FnSW8ifQ.c97mqtOcNcKft2TwV-tnEQ';
 var map = L.mapbox.map('map', 'agustin3a.88bf40a9')
     .setView([14.56, -90.733], 15);
@@ -94,7 +101,7 @@ var markers;
   var marker, popupContent, properties;
   marker = e.layer;
   properties = marker.feature.properties;
-  popupContent = '<div class="popup"><a class="linkmodal" data-name="' + properties.name + '" data-toggle="modal" data-target="#myModal" data-address="'+ properties.address +'" data-phone="'+ properties.phone + '" data-web="'+ properties.website +'"> ' + '<h3>' + properties.name + '</h3>' + '<p>' + properties.address + '</p>' + '</a>' + '</div>';
+  popupContent = '<div class="popup"><a class="linkmodal" data-name="' + properties.name + '" data-toggle="modal" data-target="#myModal" data-address="'+ properties.address +'" data-phone="'+ properties.phone + '" data-web="'+ properties.website +'" data-id="' + properties.id + '"> ' + '<h3>' + properties.name + '</h3>' + '<p>' + properties.address + '</p>' + '</a>' + '</div>';
   return marker.bindPopup(popupContent, {
     closeButton: false,
     minWidth: 320
@@ -117,6 +124,11 @@ $('#map').on('click', '.linkmodal', function() {
   } else {
     $('.modal-web').html(website);
   }
+
+  var id = $(this).data('id');
+   $(document).ready(function(){
+        $("#email_field").val(id);
+   });
     return true;
   
 });
@@ -151,6 +163,18 @@ $('.sidemenu a').on('click', function() {
 
 window.twttr=(function(d,s,id){var t,js,fjs=d.getElementsByTagName(s)[0];if(d.getElementById(id)){return}js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);return window.twttr||(t={_e:[],ready:function(f){t._e.push(f)}})}(document,"script","twitter-wjs"));
 
+L.mapbox.accessToken = 'pk.eyJ1IjoiYWd1c3RpbjNhIiwiYSI6Ik5EU3FnSW8ifQ.c97mqtOcNcKft2TwV-tnEQ';
+var map2 = L.mapbox.map('map2', 'agustin3a.88bf40a9')
+    .setView([14.56, -90.733], 15);
+
+    var layers = {
+      Streets: L.mapbox.tileLayer('examples.map-i87786ca'),
+      Outdoors: L.mapbox.tileLayer('examples.ik7djhcc'),
+      Satellite: L.mapbox.tileLayer('examples.map-igb471ik')
+  };
+
+layers.Streets.addTo(map2);
+L.control.layers(layers).addTo(map2)
 
 </script>
 

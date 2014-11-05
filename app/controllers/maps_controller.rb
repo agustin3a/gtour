@@ -3,6 +3,7 @@ class MapsController < ApplicationController
   	@places = Place.all
 		@geojson = Array.new
 		@places.each do |place|
+			comments = Comments.where(place_id: place.id)
 			if place.type == 1 
 				color = '#E74C3C'
 				symbol = 'park'
@@ -35,6 +36,15 @@ class MapsController < ApplicationController
 		      phone: place.phone,
 		      website: place.website,
 		      type: ptype,
+		      id: place.id,
+		      comments: [
+			      comments.each do |comment|
+			      	{
+			      	title: comment.body,
+			      	body: comment.title
+			      	}
+			      end
+		 	 ],
 	      	:'marker-color' => color,
 	      	:'marker-symbol' => symbol,
 	      	:'marker-size' => 'medium'		      
