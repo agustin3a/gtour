@@ -74,32 +74,58 @@
 
 </div>
 </div>
-
+<div id="disqus_thread"></div>
 <script>
 
-/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-    var disqus_shortname = '<%=  @site.title %>'; // Required - Replace example with your forum shortname
-
-    /* * * DON'T EDIT BELOW THIS LINE * * */
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
 
 L.mapbox.accessToken = 'pk.eyJ1IjoiYWd1c3RpbjNhIiwiYSI6Ik5EU3FnSW8ifQ.c97mqtOcNcKft2TwV-tnEQ';
 var map = L.mapbox.map('mapx', 'agustin3a.88bf40a9')
-    .setView([14.56, -90.733], 15);
+    .setView([<%= @site.place.latitude %>, <%= @site.place.longitude %>], 16); 
 
     var layers = {
       Streets: L.mapbox.tileLayer('examples.map-i87786ca'),
       Outdoors: L.mapbox.tileLayer('examples.ik7djhcc'),
       Satellite: L.mapbox.tileLayer('examples.map-igb471ik')
   };
-
 layers.Streets.addTo(map);
 L.control.layers(layers).addTo(map);
-var markers;
 
+var geojson = [
+  {
+      "type": "Feature",
+      "geometry": {
+        "coordinates": [
+          <%= @site.place.longitude %>,
+          <%= @site.place.latitude %>
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "title": "<%= @site.place.name %>",
+        "address": "<%= @site.place.address %>",
+        "marker-color": "#1087bf",
+        "marker-size": "large",
+        "marker-symbol": "circle-stroked"
+      }
+    }
+
+];
+var markers = L.mapbox.featureLayer()
+    .setGeoJSON(geojson)
+    .addTo(map);
+
+map.scrollWheelZoom.disable();
+
+ 
+    var disqus_shortname = '<%= Site::DISQUS_SHORTNAME %>';
+    var disqus_identifier = '<%= @site.id %>';
+    var disqus_title = '<%= @site.title %>';
+ 
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
 </script>
-<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+

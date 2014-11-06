@@ -28,6 +28,9 @@ gem 'bootstrap-sass'
 gem 'geokit-rails'
 gem 'activeadmin', github: 'activeadmin'
 gem 'paperclip', '~> 4.2.0'
+gem 'jquery-turbolinks'
+gem 'masonry-rails', '~> 0.2.0'
+gem 'tinymce-rails', '~> 4.1.4'
 
 group :development, :test do
      gem 'sqlite3'

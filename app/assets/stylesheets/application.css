@@ -13,4 +13,5 @@
  *= require_self
  *= require 'custom_bootstrap'
  *= require 'sites'
+ *= require 'masonry/transitions'
  */

@@ -29,7 +29,7 @@
         <li><a  data-filter='3' ><i class="glyphicon"><img src="/assets/icons/museum-24.svg"/></i> Museums</a></li>
         <% @museums.each  do |museum| %>
           <li><%= link_to museum, class: "sub" do %>
-              <%= musemum.title %>
+              <%= museum.title %>
             <% end %>
           </li>
         <% end %>
@@ -46,21 +46,21 @@
       </ul>
   </div>
 
-    <div class="column col-sm-10 col-xs-11" ß>
-
+    <div class="column col-sm-10 col-xs-11" >
+    <div class="container">
     <h1>Sites</h1>
-  <div class="jumbotron">
-  <ul>
-     <% @sites.each  do |site| %>
-     <li>
-        <%= link_to site  do %>
-              <%= site.title %>
-            <% end %>
-    </li>
-    <% end %>
-    </ul>
-   
-       
+  <div id="pins">
+  <% @sites.each do |site| %>
+    <div class="box panel panel-default">
+      <%= link_to image_tag(site.image.url(:medium)), site %>
+      <div class="panel-body">
+        <%= site.title %>
+      </div>
+      <div class="panel-footer">
+      </div>
+    </div>
+  <% end %>
+</div>
 </div>
 
 </div>

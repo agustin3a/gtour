@@ -28,7 +28,7 @@ index  :default => true do
     f.inputs "Place" do
       f.input :place_id, :as => :select, :collection => Place.all
       f.input :title
-      f.input :body
+      f.input :body, :input_html => { :class => "tinymce" }
       f.input :image
     end
     f.actions
